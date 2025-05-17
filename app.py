@@ -15,23 +15,26 @@ def senai():
 @app.route('/pesquisacep/<cep>', methods=['GET'])
 def pesquisacep(cep):
 
-    url = f"https://viacep.com.br/ws/{cep}/json/"
+    url      = f"https://viacep.com.br/ws/{cep}/json/"
     resposta = requests.get(url)
     return resposta.json()
 
 @app.route('/search-city/<city>', methods=['GET'])
 def searchcity(city):
 
-    key = "c4380707dde242f4b78202712252204&q"
-    url = f"https://api.weatherapi.com/v1/current.json?key={key}={city}&lang=pt"
+    key      = "c4380707dde242f4b78202712252204"
+    url      = f"https://api.weatherapi.com/v1/current.json?key={key}&q={city}&lang=pt"
     resposta = requests.get(url)
     result   = resposta.json()
 
     temperatura = result['current']['temp_c']
     umidade     = result['current']['humidity']
+    cidade      = result['current']['name']
+    regiao      = result['current']['region']
+    localhora   = result['current']['localtime']
 
     return render_template("paginatempo.html",
-    temp=temperatura, umid=umidade, city=city)
+    temp=temperatura, umid=umidade, nome=cidade, estado=regiao, localhora=localhora)
 
 if __name__ == '__main__':
     app.run(debug=True)
