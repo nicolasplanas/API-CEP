@@ -21,20 +21,35 @@ def pesquisacep(cep):
 
 @app.route('/search-city/<city>', methods=['GET'])
 def searchcity(city):
-    
+
     key      = "c4380707dde242f4b78202712252204"
     url      = f"https://api.weatherapi.com/v1/current.json?key={key}&q={city}&lang=pt"
+
     resposta = requests.get(url)
     result   = resposta.json()
 
-    temperatura = result['current']['temp_c']
-    umidade     = result['current']['humidity']
-    cidade      = result['current']['name']
-    regiao      = result['current']['region']
-    localhora   = result['current']['localtime']
+    # Verifica se veio erro na resposta
+    if "error" in result:
+        return jsonify({"erro": "Cidade não encontrada ou chave da API inválida."}), 404
+
+    temperatura = result["current"]["temp_c"]
+    umidade     = result["current"]["humidity"]
+    velvento    = result["current"]["vis_km"]
+    pressaoatim = result["current"]["pressure_mb"]
+    cidade      = result["location"]["name"]
+    regiao      = result["location"]["region"]
+    localhora   = result["location"]["localtime"]
+    pais        = result["location"]["country"]
 
     return render_template("paginatempo.html",
-    temp=temperatura, umid=umidade, nome=cidade, estado=regiao, localhora=localhora)
+                            temp=temperatura, 
+                            umid=umidade,
+                            vento=velvento,
+                            pressao=pressaoatim,
+                            nome=cidade, 
+                            estado=regiao, 
+                            horalocal=localhora,
+                            pais=pais)
 
 if __name__ == '__main__':
     app.run(debug=True)
