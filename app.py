@@ -21,7 +21,7 @@ def pesquisacep(cep):
 
 @app.route('/search-city/<city>', methods=['GET'])
 def searchcity(city):
-
+    
     key      = "c4380707dde242f4b78202712252204"
     url      = f"https://api.weatherapi.com/v1/current.json?key={key}&q={city}&lang=pt"
     resposta = requests.get(url)
