@@ -3,13 +3,9 @@ import requests
 
 app = Flask(__name__)
 
-@app.route('/hello', methods=['GET'])
+@app.route('/')
 def hello():
-    return jsonify(message="Ola, mundo!"), 200
-
-@app.route('/senai', methods=['GET'])
-def senai():
-    return jsonify(message="Ola, senai!"), 200
+    return render_template('home.html')
 
 # endpoint - pesquisar endereço através do cep, retorna em formato json
 @app.route('/pesquisacep/<cep>', methods=['GET'])
@@ -19,7 +15,7 @@ def pesquisacep(cep):
     resposta = requests.get(url)
     return resposta.json()
 
-@app.route('/search-city/<city>', methods=['GET'])
+@app.route('/city-search/<city>', methods=['GET'])
 def searchcity(city):
 
     key      = "c4380707dde242f4b78202712252204"
