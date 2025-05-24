@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Aluno\Desktop\Projeto API\API-CEP\.venv
+set VIRTUAL_ENV=C:\Users\Aluno\Desktop\Curso\API-CEP\.venv
 
 if not defined PROMPT set PROMPT=$P$G
 

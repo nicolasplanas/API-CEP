@@ -6,14 +6,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #eef2f3;
+            background-color: #000041;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
         .painel {
-            background-color: #fff;
+            background-color: #0f0769;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -21,24 +21,50 @@
         }
         .painel h1 {
             margin-bottom: 20px;
+            color: #fff
         }
         .dado {
             font-size: 2em;
             margin: 10px 0;
+            color: #fff;
+        }
+        .dado strong {
+            font-size: 1em;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        select, button {
+            padding: 8px 12px;
+            font-size: 1em;
+            margin-top: 10px;
         }
     </style> 
 </head>
 <body>
     <div class="painel">
         <h1>⛅ Clima Tempo</h1>
-        <div class="dado">🏙️ Cidade: <strong>{{ nome }}</strong></div>
-        <div class="dado">📍 Estado: <strong>{{ estado }}</strong></div>
+
+        <form method="POST">
+            <label for="cidade">Selecione uma cidade:</label><br>
+            <select name="cidade" id="cidade">
+                <option value="Sao Paulo">São Paulo</option>
+                <option value="Rio de Janeiro">Rio de Janeiro</option>
+                <option value="Belo Horizonte">Belo Horizonte</option>
+                <option value="Curitiba">Curitiba</option>
+                <option value="Recife">Recife</option>
+            </select><br>
+            <button type="submit">Buscar</button>
+        </form>
+
+        <div class="dado">🏙️ Cidade: <strong>{{ cidade }}</strong></div>
+        <div class="dado">📍 Estado: <strong>{{ regiao }}</strong></div>
         <div class="dado">🌎 Pais: <strong>{{ pais }}</strong></div>
-        <div class="dado">🌡️ Temperatura: <strong>{{ temp }}°C</strong></div>
-        <div class="dado">💧 Umidade: <strong>{{ umid }}%</strong></div>
-        <div class="dado">🌬 Velocidade do Vento: <strong>{{ vento }}Km/h</strong></div>
-        <div class="dado">💢 Pressão Atmosférica: <strong>{{ pressao }}</strong></div>
-        <div class="dado">🕐 Local Hora: <strong>{{ horalocal }}</strong></div>
+        <div class="dado">🌡️ Temperatura: <strong>{{ temperatura }}°C</strong></div>
+        <div class="dado">💧 Umidade: <strong>{{ umidade }}%</strong></div>
+        <div class="dado">🌬 Velocidade do Vento: <strong>{{ velvento }}Km/h</strong></div>
+        <div class="dado">💢 Pressão: <strong>{{ pressaoatim }} mb</strong></div>
+        <div class="dado">🕐 Local Hora: <strong>{{ localhora }}</strong></div>
     </div>
 </body>
 </html>
