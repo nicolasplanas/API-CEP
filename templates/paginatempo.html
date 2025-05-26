@@ -6,14 +6,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000041;
+            background-color: #808080;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
         .painel {
-            background-color: #0f0769;
+            background-color: #9c9c9c;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -39,6 +39,9 @@
             font-size: 1em;
             margin-top: 10px;
         }
+        label {
+            color: #fff;
+        }
     </style> 
 </head>
 <body>
@@ -47,7 +50,8 @@
 
         <form method="POST">
             <label for="cidade">Selecione uma cidade:</label><br>
-            <select name="cidade" id="cidade">
+            <select name="cidade" id="cidade" required>
+                <option value="Nenhum" selected disabled>Cidades</option>
                 <option value="Sao Paulo">São Paulo</option>
                 <option value="Rio de Janeiro">Rio de Janeiro</option>
                 <option value="Belo Horizonte">Belo Horizonte</option>
@@ -57,14 +61,20 @@
             <button type="submit">Buscar</button>
         </form>
 
-        <div class="dado">🏙️ Cidade: <strong>{{ cidade }}</strong></div>
-        <div class="dado">📍 Estado: <strong>{{ regiao }}</strong></div>
-        <div class="dado">🌎 Pais: <strong>{{ pais }}</strong></div>
-        <div class="dado">🌡️ Temperatura: <strong>{{ temperatura }}°C</strong></div>
-        <div class="dado">💧 Umidade: <strong>{{ umidade }}%</strong></div>
-        <div class="dado">🌬 Velocidade do Vento: <strong>{{ velvento }}Km/h</strong></div>
-        <div class="dado">💢 Pressão: <strong>{{ pressaoatim }} mb</strong></div>
-        <div class="dado">🕐 Local Hora: <strong>{{ localhora }}</strong></div>
+        {% if erro %}
+            <div class="dado" style="color: red;">❌ Favor, selecionar a cidade.</div>
+        {% endif %}
+        {% if cidade %}
+            <div class="dado">🏙️ Cidade: <strong>{{ cidade }}</strong></div>
+            <div class="dado">📍 Estado: <strong>{{ regiao }}</strong></div>
+            <div class="dado">🌎 Pais: <strong>{{ pais }}</strong></div>
+            <div class="dado">🌡️ Temperatura: <strong>{{ temperatura }}°C</strong></div>
+            <div class="dado">💧 Umidade: <strong>{{ umidade }}%</strong></div>
+            <div class="dado">🌬 Velocidade do Vento: <strong>{{ velvento }}Km/h</strong></div>
+            <div class="dado">💢 Pressão: <strong>{{ pressaoatim }} mb</strong></div>
+            <div class="dado">🕐 Local Hora: <strong>{{ localhora }}</strong></div>
+        {% endif %}
+        <button onclick="window.location.href = '/'">Voltar</button>
     </div>
 </body>
 </html>

@@ -44,15 +44,20 @@
             <button type="submit">Consultar</button>
         </form>
 
-        {% if cep %}
-        <div class="dado">📍 CEP: <strong>{{ cep }}</strong></div>
-        <div class="dado">🏙️ Logradouro: <strong>{{ logradouro }}</strong></div>
-        <div class="dado">📦 Complemento: <strong>{{ complemento }}</strong></div>
-        <div class="dado">🏘️ Bairro: <strong>{{ bairro }}</strong></div>
-        <div class="dado">🏙️ Cidade: <strong>{{ localidade }}</strong></div>
-        <div class="dado">🗺️ Estado (UF): <strong>{{ uf }}</strong></div>
-        <div class="dado">🔄 IBGE: <strong>{{ ibge }}</strong></div>
+        {% if erro %}
+            <div class="dado" style="color: red;">❌ CEP inválido. Verifique e tente novamente.</div>
         {% endif %}
+
+        {% if cep %}
+            <div class="dado">📍 CEP: <strong>{{ cep }}</strong></div>
+            <div class="dado">🏙️ Logradouro: <strong>{{ logradouro }}</strong></div>
+            <div class="dado">📦 Complemento: <strong>{{ complemento }}</strong></div>
+            <div class="dado">🏘️ Bairro: <strong>{{ bairro }}</strong></div>
+            <div class="dado">🏙️ Cidade: <strong>{{ localidade }}</strong></div>
+            <div class="dado">🗺️ Estado (UF): <strong>{{ uf }}</strong></div>
+            <div class="dado">🔄 IBGE: <strong>{{ ibge }}</strong></div>
+        {% endif %}
+        <button onclick="window.location.href = '/'">Voltar</button>
     </div>
 </body>
 </html>
